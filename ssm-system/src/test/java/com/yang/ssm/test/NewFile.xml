@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Cbhbpac>
+	<Message id="10134522399">
+		<SCSPReq id="SCSPReq">
+			<version>1.0.0</version>
+			<instId>100001</instId>
+			<certId>cert0001</certId>
+			<serialNo>10134522399</serialNo>
+			<date>20130330 11:51:39</date>
+			<pyrAct>20000110011</pyrAct>
+			<pyrNam>x公司</pyrNam>
+			<pyeAct>6228000011112222</pyeAct>
+			<pyeNam>张三</pyeNam>
+			<pyeBnk>1000100023</pyeBnk>
+			<postscript>理赔款</postscript>
+		</SCSPReq>
+	</Message>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod
+				Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="#SCSPReq">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+				<DigestValue>ZHVYwyY+MCDiy2xtgc3b0wcddeg=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>Owv13HlaS5mRm3c2m0fe6uP4BvzI5/gfVmg7Oadiao8uNK7xAFjwnamTdIt5j7kL9ig1nZk3ofYX
+			uRSIuYKX4A==
+		</SignatureValue>
+	</Signature>
+</Cbhbpac>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	  <parent>
+	    <groupId>com.yang</groupId>
+	    <artifactId>ssm</artifactId>
+	    <version>1.0.0-SNAPSHOT</version>
+	  </parent>
+	<artifactId>ssm-system</artifactId>
+	<packaging>war</packaging>
+	<name>ssm-system</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		 <dependency>
+			<groupId>com.yang</groupId>
+			<artifactId>ssm-core</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+        <!-- 添加junit单元测试包 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+</project>
