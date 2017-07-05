@@ -13,7 +13,7 @@
     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
     <!-- 引入mail.properties属性文件 -->
-<!--     <context:property-placeholder location="classpath:resources/config/mail.properties" />  -->
+<!--     <context:property-placeholder location="classpath:properties/mail.properties" />  -->
     
     <!-- 邮件发送配置============================begin======================================   -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">    
