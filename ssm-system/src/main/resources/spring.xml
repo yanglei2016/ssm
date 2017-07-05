@@ -14,7 +14,7 @@
 
     <!-- 引入application.properties属性文件 -->
     <!-- 可通过order排序先后加载<context:property-placeholder order="0" location="classpath:application.properties" /> -->
-    <context:property-placeholder location="classpath:application.properties" /> 
+    <context:property-placeholder location="classpath:properties/*.properties" ignore-unresolvable="true"/> 
 <!--     <context:property-placeholder location="file:E:/properties/ssm/*.properties" ignore-unresolvable="true"/> -->
 <!--     <context:property-placeholder location="file:${config.path}/ssm/*.properties" ignore-unresolvable="true"/> -->
     <!-- 自动扫描(自动注入)，扫描com.yang.*这个包以及它的子包的所有使用@Service注解标注的类 -->
@@ -26,32 +26,12 @@
     <!-- 定时器开关 -->
 <!-- 	<task:annotation-driven /> -->
     
-    <!-- 邮件发送配置============================begin======================================   -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">    
-        <property name="host" value="${mail.host}" />   
-        <property name="username" value="${mail.username}" />    
-        <property name="password" value="${mail.password}" />    
-        <property name="defaultEncoding" value="UTF-8"></property>    
-        <property name="javaMailProperties">    
-            <props>    
-                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>    
-                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>    
-                <prop key="mail.smtp.port">${mail.smtp.port}</prop>    
-            </props>    
-        </property>    
-    </bean>    
-      
-    <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">  
-        <!-- 发件人email -->  
-        <property name="from" value="${mail.username}" />  
-    </bean>
-      
-    <bean id="mailUtil" class="com.yang.common.tools.MailUtils">
-        <property name="mailSender" ref="mailSender"></property>
-        <property name="simpleMailMessage" ref="simpleMailMessage"></property>
-        <property name="mailTo" value="${mail.recipient}"></property>
-        <property name="mailFrom" value="${mail.username}"></property>
-    </bean>
-    <!-- 邮件发送配置============================end======================================   -->
     
+    
+    <!-- 其他配置============begin============ -->
+    <import resource="config/spring-mybatis.xml"/>
+    
+    <import resource="config/mail.xml"/>
+    
+    <!-- 其他配置=============end============= -->
 </beans>
