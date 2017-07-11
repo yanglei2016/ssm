@@ -1,62 +1,258 @@
 package com.yang.common.tools;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
  * 日期工具类
- * @author yanglei
- * 2017年7月4日 上午9:06:14
+ * 
+ * @author yanglei 2017年7月4日 上午9:06:14
  */
 public class DateUtils {
-	
-	private Logger logger = Logger.getLogger(getClass());
 
-	/**日期格式 yyyy-MM-dd*/
-	public static final String DATE_FMT_D = "yyyy-MM-dd";
-	/**日期格式 yyyy-MM-dd HH:mm:ss*/
-	public static final String DATE_FMT_DT = "yyyy-MM-dd HH:mm:ss";
-	/**日期格式 yyyyMMddHHmmss*/
-	public static final String DATE_FMT_DT_SEQ = "yyyyMMddHHmmss";
+	private static Logger logger = Logger.getLogger(DateUtils.class);
 	
-	
-	private static final ThreadLocal<DateFormat> threadLocal = new ThreadLocal<DateFormat>() {
-        protected synchronized DateFormat initialValue() {
-            return new SimpleDateFormat();
-        }
-    };
+	/** 日期格式 yyyy-MM-dd */
+	public static final String DATE_FMT = "yyyy-MM-dd";
+	/** 日期格式 yyyy-MM-dd HH:mm:ss */
+	public static final String DATE_TIME_FMT = "yyyy-MM-dd HH:mm:ss";
+	/** 日期格式 yyyyMMddHHmmss */
+	public static final String DATETIME_FMT = "yyyyMMddHHmmss";
 
-    // 获取线程的变量副本，如果不覆盖initialValue，第一次get返回null，故需要初始化一个SimpleDateFormat，并set到threadLocal中
-    private static DateFormat getDateFormat(String pattern) {
-        DateFormat dateFormat = threadLocal.get();
-        if (dateFormat == null) {
-            dateFormat = new SimpleDateFormat(pattern);
-            threadLocal.set(dateFormat);
-        }
-        return dateFormat;
-    }
-    
-    public static String getCurrentDateTime(String pattern) {
-        return getCurrentDateTime(pattern, new Date());
-    }
-    
-    public static String getCurrentDateTime(String pattern, Date date) {
-        return getDateFormat(pattern).format(date);
-    }
-    
-    
-    public static void main(String[] args) {
-    	System.out.println(DateFormatUtils.format(new Date(), DATE_FMT_D));
-    	System.out.println(DateFormatUtils.format(new Date(), DATE_FMT_DT));
-    	
-    	DateFormat dateFormat = new SimpleDateFormat(DATE_FMT_D);
-    	System.out.println(dateFormat.format(new Date()));
-		System.out.println(getCurrentDateTime(DATE_FMT_D));
-		System.out.println(getCurrentDateTime(DATE_FMT_DT));
-		System.out.println(getCurrentDateTime(DATE_FMT_DT_SEQ));
+	private static final ThreadLocal<DateFormat> LOCAL_DATE_FMT = new ThreadLocal<DateFormat>() {
+		@Override
+		protected DateFormat initialValue() {
+			return new SimpleDateFormat(DATE_FMT);
+		}
+	};
+	private static final ThreadLocal<DateFormat> LOCAL_DATE_TIME_FMT = new ThreadLocal<DateFormat>() {
+		@Override
+		protected DateFormat initialValue() {
+			return new SimpleDateFormat(DATE_TIME_FMT);
+		}
+	};
+	private static final ThreadLocal<DateFormat> LOCAL_DATETIME_FMT = new ThreadLocal<DateFormat>() {
+		@Override
+		protected DateFormat initialValue() {
+			return new SimpleDateFormat(DATETIME_FMT);
+		}
+	};
+
+	private static DateFormat getDateFormat(){
+		return LOCAL_DATE_FMT.get();
 	}
+	
+	private static DateFormat getDateTimeFormat(){
+		return LOCAL_DATE_TIME_FMT.get();
+	}
+	
+	private static DateFormat getDateFormat(String pattern){
+		DateFormat dateFormat = null;
+		switch(pattern){
+		case DATE_FMT :
+			dateFormat = LOCAL_DATE_FMT.get();
+			break;
+			
+		case DATE_TIME_FMT :
+			dateFormat = LOCAL_DATE_TIME_FMT.get();
+			break;
+			
+		case DATETIME_FMT :
+			dateFormat = LOCAL_DATETIME_FMT.get();
+			break;
+			
+		default :
+			dateFormat = LOCAL_DATE_FMT.get();
+		}
+		return dateFormat;
+	}
+
+	/**
+	 * yyyy-MM-dd日期字符串
+	 * @author yanglei
+	 * 2017年7月11日 上午9:27:44
+	 */
+	public static String getCurrentDate(){
+		return getDateFormat().format(new Date());
+	}
+	
+	/**
+	 * yyyy-MM-dd HH:mm:ss日期字符串
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:28:36
+	 */
+	public static String getCurrentDateTime(){
+		return getDateTimeFormat().format(new Date());
+	}
+	
+	/**
+	 * yyyy-MM-dd日期字符串
+	 * @author yanglei
+	 * 2017年7月11日 上午9:27:44
+	 */
+	public static String getDateStr(Date date){
+		return getDateFormat().format(date);
+	}
+	
+	/**
+	 * 根据格式获取日期字符串
+	 * @param pattern
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:28:32
+	 */
+	public static String getDateStr(String pattern){
+		return getDateFormat(pattern).format(new Date());
+	}
+	
+	/**
+	 * yyyy-MM-dd日期字符串
+	 * @author yanglei
+	 * 2017年7月11日 上午9:27:44
+	 */
+	public static String getDateStr(Date date, String pattern){
+		return getDateFormat(pattern).format(date);
+	}
+	
+	/**
+	 * 转换yyyy-MM-dd字符串为日期
+	 * @param dateStr
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:43:47
+	 */
+	public static Date convertStrToDate(String dateStr){
+		Date date = null;
+		if(StringUtils.isEmpty(dateStr)){
+			return date;
+		}
+		try {
+			date = getDateFormat(DATE_FMT).parse(dateStr);
+		} catch (ParseException e) {
+			logger.error("DateUtils格式化日期异常", e);
+		}
+		return date;
+	}
+	
+	/**
+	 * 根据格式转换字符串为日期
+	 * @param dateStr
+	 * @param pattern
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:43:54
+	 */
+	public static Date convertStrToDate(String dateStr, String pattern){
+		Date date = null;
+		if(StringUtils.isEmpty(dateStr)){
+			return date;
+		}
+		try {
+			date = getDateFormat(pattern).parse(dateStr);
+		} catch (ParseException e) {
+			logger.error("DateUtils格式化日期异常", e);
+		}
+		return date;
+	}
+	
+	/**
+	 * 转换yyyy-MM-dd HH:mm:ss字符串为日期
+	 * @param dateStr
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:44:00
+	 */
+	public static Date convertStrToDateTime(String dateStr){
+		Date date = null;
+		if(StringUtils.isEmpty(dateStr)){
+			return date;
+		}
+		try {
+			date = getDateFormat(DATE_TIME_FMT).parse(dateStr);
+		} catch (ParseException e) {
+			logger.error("DateUtils格式化日期异常", e);
+		}
+		return date;
+	}
+	
+	/**
+	 * 日期计算
+	 * @param date
+	 * @param type
+	 * @param num
+	 * @return
+	 * @author yanglei
+	 * 2017年7月11日 上午9:54:29
+	 */
+	private static Date setDate(Date date, int type, int num){
+		if (date == null) {
+			return null;
+		}
+		// 初始化日历对象
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+
+		// 根据类型添加
+		switch (type) {
+		case 1: // 添加年
+			cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + num);
+			break;
+		case 2: // 添加月
+			cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + num);
+			break;
+		case 3: // 添加日
+			cal.set(Calendar.DATE, cal.get(Calendar.DATE) + num);
+			break;
+		case 4: // 添加时
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + num);
+			break;
+		case 5: // 添加分
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + num);
+			break;
+		case 6: // 添加秒
+			cal.set(Calendar.SECOND, cal.get(Calendar.SECOND) + num);
+			break;
+		}
+		return cal.getTime();
+	}
+	
+	public static String getDateByNum(String dateStr, int num){
+		return getDateStr(setDate(convertStrToDate(dateStr), 3, num));
+	}
+	
+	public static Date getDateByNum(Date date, int num){
+		return setDate(date, 3, num);
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+//		System.out.println(getCurrentDate());
+//		System.out.println(getCurrentDateTime());
+//		
+//		Thread.sleep(1000);
+//		
+//		System.out.println(getDateStr(DateUtils.DATE_FMT));
+//		System.out.println(getDateStr(DateUtils.DATE_TIME_FMT));
+//		System.out.println(getDateStr(DateUtils.DATETIME_FMT));
+//		
+//		Thread.sleep(2000);
+//		
+//		System.out.println(convertStrToDate("2017-07-11"));
+//		System.out.println(convertStrToDateTime("2017-07-11 09:26:29"));
+		
+		
+		
+		System.out.println(getDateByNum("2017-07-11", 1));
+		System.out.println(getDateByNum("2017-07-11", -1));
+		
+		
+		
+	}
+	
 }
