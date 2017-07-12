@@ -223,10 +223,26 @@ public class DateUtils {
 		return cal.getTime();
 	}
 	
+	/**
+	 * 字符串日期天数加减
+	 * @param dateStr
+	 * @param num
+	 * @return yyyy-MM-dd格式日期字符串
+	 * @author yanglei
+	 * 2017年7月12日 下午3:10:59
+	 */
 	public static String getDateByNum(String dateStr, int num){
 		return getDateStr(setDate(convertStrToDate(dateStr), 3, num));
 	}
 	
+	/**
+	 * 日期天数加减
+	 * @param date
+	 * @param num
+	 * @return
+	 * @author yanglei
+	 * 2017年7月12日 下午3:11:04
+	 */
 	public static Date getDateByNum(Date date, int num){
 		return setDate(date, 3, num);
 	}
@@ -251,7 +267,8 @@ public class DateUtils {
 		System.out.println(getDateByNum("2017-07-11", 1));
 		System.out.println(getDateByNum("2017-07-11", -1));
 		
-		
+		System.out.println(getDateByNum(new Date(), 1));
+		System.out.println(getDateByNum(new Date(), -1));
 		
 	}
 	
