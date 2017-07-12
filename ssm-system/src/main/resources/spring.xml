@@ -33,5 +33,7 @@
     
     <import resource="config/mail.xml"/>
     
+    <import resource="config/dubbo.xml"/>
+    
     <!-- 其他配置=============end============= -->
 </beans>

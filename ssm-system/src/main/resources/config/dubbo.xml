@@ -8,13 +8,19 @@
 
 	<dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.address}" />
     
-    <dubbo:protocol name="dubbo" port="-1" heartbeat="2000"/>
+    <dubbo:protocol name="dubbo" port="-1" heartbeat="2000" host="${dubbo.host}"/>
     
     <!-- 调用服务=========begin========= -->
-    
+    <!--
+    	直连调试：
+		<dubbo:reference id="xxxService" interface="com.alibaba.xxx.XxxService" url="dubbo://localhost:20890" />
+	-->
+	<dubbo:reference id="userVoService" interface="com.yang.ssm.remote.UserVoService" check="false" timeout="${dubbo.reference.timeout}"/>
+	
     <!-- 调用服务==========end========== -->
     
     <!-- 提供服务=========begin========= -->
-
+	<dubbo:service interface="com.yang.ssm.remote.UserVoService" ref="userVoServiceImpl"/>
+	
     <!-- 提供服务==========end========== -->
 </beans>
