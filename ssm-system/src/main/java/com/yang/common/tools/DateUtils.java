@@ -7,7 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 日期工具类
@@ -16,7 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class DateUtils {
 
-	private static Logger logger = Logger.getLogger(DateUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(DateUtils.class);
 	
 	/** 日期格式 yyyy-MM-dd */
 	public static final String DATE_FMT = "yyyy-MM-dd";

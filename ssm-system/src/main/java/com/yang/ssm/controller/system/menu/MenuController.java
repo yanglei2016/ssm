@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +32,7 @@ import net.sf.json.JSONObject;
 @RequestMapping("system/menu")
 public class MenuController {
 	
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private final String ROOT_URL = "system/menu/";
 	
@@ -41,19 +42,19 @@ public class MenuController {
 	@RequestMapping("menuTree.do")
 	public String menuTree(Model model, HttpServletRequest request){
 		String message = "跳转菜单管理";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		String treeData = menuService.getTreeData();
 		model.addAttribute("treeData", treeData);
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		return ROOT_URL + "menu_tree_list";
 	}
 	
 	@RequestMapping("selectOneMenu.do")
 	public void selectOneMenu(HttpServletRequest request, HttpServletResponse response, String menuId){
 		String message = "查询菜单";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		if(StringUtils.isNotEmpty(menuId)){
@@ -70,13 +71,13 @@ public class MenuController {
 			resultMap.put(PlatFormConstants.RESPONSE_MESSAGE, "操作失败，菜单ID为空！");
 		}
 		ResponseUtils.renderHtmlJson(response, JSONObject.fromObject(resultMap).toString());
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 	
 	@RequestMapping("deleteMenu.do")
 	public void deleteMenu(HttpServletRequest request, HttpServletResponse response, String menuIds){
 		String message = "删除菜单";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		if(StringUtils.isNotEmpty(menuIds)){
@@ -93,25 +94,25 @@ public class MenuController {
 			resultMap.put(PlatFormConstants.RESPONSE_MESSAGE, "操作失败，菜单ID为空！");
 		}
 		ResponseUtils.renderHtmlJson(response, JSONObject.fromObject(resultMap).toString());
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 	
 	@RequestMapping("toMenuSave.do")
 	public String toMenuSave(Model model, HttpServletRequest request, String parentId, String parentMenuName) throws UnsupportedEncodingException{
 		String message = "打开新增菜单窗口";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		model.addAttribute("parentId", parentId);
 		model.addAttribute("parentMenuName", URLDecoder.decode(parentMenuName, "utf-8"));
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		return ROOT_URL + "menu_save";
 	}
 	
 	@RequestMapping("doMenuSave.do")
 	public String doMenuSave(Model model, HttpServletRequest request, Menu menu, String pageType){
 		String message = "新增/修改菜单";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		if(menu == null){
 			throw new RuntimeException("菜单信息为空！");
@@ -127,7 +128,7 @@ public class MenuController {
 			throw new RuntimeException("pageType类型错误");
 		}
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		model.addAttribute(PlatFormConstants.RESPONSE_CODE, PlatFormConstants.CODE_SUCC);
 		model.addAttribute(PlatFormConstants.RESPONSE_MESSAGE, "操作成功");
 		model.addAttribute(PlatFormConstants.REDIRECT_URL, "menuTree.do");

@@ -11,9 +11,9 @@ public class PlatFormConstants {
 	
 	
 	/**开始**/
-	public final static String MESSAGE_START = "..........开始..........";
+	public final static String MESSAGE_START = "{}..........开始..........";
 	/**结束**/
-	public final static String MESSAGE_END   = "..........结束..........";
+	public final static String MESSAGE_END   = "{}..........结束..........";
 	
     /**查询对象**/
 	public final static String PARAMETER_MAP = "parameterMap"; 

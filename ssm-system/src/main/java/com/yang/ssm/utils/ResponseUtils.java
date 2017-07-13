@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yang.ssm.common.constants.PlatFormConstants;
 
@@ -14,7 +15,7 @@ import com.yang.ssm.common.constants.PlatFormConstants;
  */
 public final class ResponseUtils{
 	
-	public static final Logger log = Logger.getLogger(ResponseUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(ResponseUtils.class);
     
 	/**
 	 * 发送json。使用UTF-8编码。
@@ -44,7 +45,7 @@ public final class ResponseUtils{
 		try {
 			response.getWriter().write(text);
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			logger.error(e.getMessage(), e);
 		}
 	}
 	

@@ -7,7 +7,8 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -20,7 +21,7 @@ import com.yang.ssm.common.constants.PlatFormConstants;
  */
 public class MailUtils {
 
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private JavaMailSender mailSender;
 	private SimpleMailMessage simpleMailMessage;
@@ -63,17 +64,17 @@ public class MailUtils {
 	 */
 	public void send(String recipient, String subject, String content) {
 		String message = "单发邮件";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		try {
 			simpleMailMessage.setTo(recipient);
 			simpleMailMessage.setSubject(subject);
 			simpleMailMessage.setText(content);
 			mailSender.send(simpleMailMessage);
-			logger.info(message + "..........【成功】..........");
+			logger.info("{}..........【成功】..........", message);
 		} catch (Exception e) {
 			logger.error(message + "..........【失败】..........", e);
 		}
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 
 	/**
@@ -88,17 +89,17 @@ public class MailUtils {
 	 */
 	public void send(List<String> recipients, String subject, String content) {
 		String message = "群发邮件";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		try {
 			simpleMailMessage.setTo(recipients.toArray(new String[recipients.size()]));
 			simpleMailMessage.setSubject(subject);
 			simpleMailMessage.setText(content);
 			mailSender.send(simpleMailMessage);
-			logger.info(message + "..........【成功】..........");
+			logger.info("{}..........【成功】..........", message);
 		} catch (Exception e) {
 			logger.error(message + "..........【失败】..........", e);
 		}
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 
 	/**
@@ -116,7 +117,7 @@ public class MailUtils {
 	 */
 	public void send(List<String> recipients, String subject, String content, List<File> fileList) {
 		String message = "群发（附件）邮件";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		try {
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -131,12 +132,12 @@ public class MailUtils {
 				mimeMessageHelper.addAttachment(file.getName(), file);
 			}
 			mailSender.send(mimeMessage);
-			logger.info(message + "..........【成功】..........");
+			logger.info("{}..........【成功】..........", message);
 		} catch (MessagingException e) {
 			logger.error(message + "..........【构造邮件失败】..........", e);
 		} catch (Exception e) {
 			logger.error(message + "..........【失败】..........", e);
 		}
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 }

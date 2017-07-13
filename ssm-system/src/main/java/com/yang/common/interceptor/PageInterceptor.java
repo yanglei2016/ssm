@@ -16,7 +16,8 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yang.common.page.PageModel;
 
@@ -27,7 +28,7 @@ import com.yang.common.page.PageModel;
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class PageInterceptor implements Interceptor {
 
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Override
 	public Object intercept(Invocation invocation) throws Exception{

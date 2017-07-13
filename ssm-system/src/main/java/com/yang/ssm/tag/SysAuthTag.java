@@ -9,9 +9,10 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.yang.ssm.common.constants.PlatFormConstants;
@@ -27,7 +28,7 @@ public class SysAuthTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = 8892254233207387894L;
 
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private String no;
 	public String getNo() {

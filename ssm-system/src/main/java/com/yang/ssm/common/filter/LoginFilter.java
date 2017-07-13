@@ -13,7 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yang.ssm.common.constants.PlatFormConstants;
 import com.yang.ssm.common.vo.UserVo;
@@ -26,7 +27,7 @@ import com.yang.ssm.common.vo.UserVo;
 @WebFilter(filterName="loginFilter", urlPatterns={"*.do"})
 public class LoginFilter implements Filter {
 
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
 	@Override

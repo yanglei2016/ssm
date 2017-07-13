@@ -6,7 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ import com.yang.ssm.service.RoleService;
 @RequestMapping("system/role")
 public class RoleController {
 
-	private Logger logger = Logger.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private final String ROOT_URL = "system/role/";
 	
@@ -44,7 +45,7 @@ public class RoleController {
 	@RequestMapping("roleList.do")
 	public String roleList(Model model, HttpServletRequest request){
 		String message = "角色列表";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		HashMap<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put(PageModel.PAGE_PARAMS, PageModel.initPage(request));
@@ -54,7 +55,7 @@ public class RoleController {
 		model.addAttribute(PlatFormConstants.RESULT_LIST, roleList);
 		model.addAttribute(PlatFormConstants.PARAMETER_MAP, parameterMap);
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		return ROOT_URL + "role_list";
 	}
 	
@@ -66,7 +67,7 @@ public class RoleController {
 	@RequestMapping("toRoleOperation.do")
 	public String toRoleOperation(Model model, HttpServletRequest request, Integer roleId, String pageType){
 		String message = "角色详细/修改/删除跳转";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		String returnPage = "";
 		if(!PlatFormConstants.PAGE_TYPE_INSERT.equals(pageType)){
@@ -90,7 +91,7 @@ public class RoleController {
 		model.addAttribute("treeData", treeData);
 		model.addAttribute("pageType", pageType);
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		return returnPage;
 	}
 	
@@ -102,7 +103,7 @@ public class RoleController {
 	@RequestMapping("doRoleSave.do")
 	public String doRoleSave(Model model, HttpServletRequest request, Role role, String pageType, String menuIds){
 		String message = "角色新增";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		if(PlatFormConstants.PAGE_TYPE_UPDATE.equals(pageType)){
 			if(role.getRoleId() == null){
@@ -115,7 +116,7 @@ public class RoleController {
 			throw new RuntimeException("pageType类型错误");
 		}
 		
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		model.addAttribute(PlatFormConstants.RESPONSE_CODE, PlatFormConstants.CODE_SUCC);
 		model.addAttribute(PlatFormConstants.RESPONSE_MESSAGE, "操作成功");
 		model.addAttribute(PlatFormConstants.REDIRECT_URL, "roleList.do");
@@ -130,7 +131,7 @@ public class RoleController {
 	@RequestMapping("doRoleDelete.do")
 	public String doRoleDelete(Model model, HttpServletRequest request, Role role, String pageType){
 		String message = "角色删除";
-		logger.info(message + PlatFormConstants.MESSAGE_START);
+		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		if(PlatFormConstants.PAGE_TYPE_DELETE.equals(pageType)){
 			if(role.getRoleId() == null){
@@ -140,7 +141,7 @@ public class RoleController {
 		}else{
 			throw new RuntimeException("pageType类型错误");
 		}
-		logger.info(message + PlatFormConstants.MESSAGE_END);
+		logger.info(PlatFormConstants.MESSAGE_END, message);
 		model.addAttribute(PlatFormConstants.RESPONSE_CODE, PlatFormConstants.CODE_SUCC);
 		model.addAttribute(PlatFormConstants.RESPONSE_MESSAGE, "操作成功");
 		model.addAttribute(PlatFormConstants.REDIRECT_URL, "roleList.do");
