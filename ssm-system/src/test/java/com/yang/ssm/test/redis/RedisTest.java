@@ -3,6 +3,7 @@ package com.yang.ssm.test.redis;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.yang.common.tools.DateUtils;
 import com.yang.common.tools.redis.RedisLock;
 import com.yang.common.tools.redis.RedisUtils;
 import com.yang.ssm.BaseTest;
@@ -26,18 +27,19 @@ public class RedisTest extends BaseTest {
 	}
 	
 	@Test
-	public void testLock(){
+	public void testLock() throws InterruptedException{
 		String key = "name";
 		if(redisLock.tryLock(key, 2 * 1000, 10 * 1000)){
-			System.out.println("-----1-----获取锁成功");
-			
-			if(redisLock.tryLock(key, 5 * 1000, 60 * 1000)){
-				System.out.println("-----2-----获取锁成功");
+			System.out.println("-----1-----获取锁成功"+ DateUtils.getCurrentDateTime());
+			Thread.sleep(2000);
+			redisLock.unLock(key);
+			if(redisLock.tryLock(key, 1 * 1000, 10 * 1000)){
+				System.out.println("-----2-----获取锁成功"+ DateUtils.getCurrentDateTime());
 			}else{
-				System.out.println("=====2=====获取锁失败");
+				System.out.println("=====2=====获取锁失败"+ DateUtils.getCurrentDateTime());
 			}
 		}else{
-			System.out.println("=====1=====获取锁失败");
+			System.out.println("=====1=====获取锁失败"+ DateUtils.getCurrentDateTime());
 		}
 		
 		
