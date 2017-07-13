@@ -35,5 +35,7 @@
     
 <!--     <import resource="config/dubbo.xml"/> -->
     
+    <import resource="config/redis.xml"/>
+    
     <!-- 其他配置=============end============= -->
 </beans>

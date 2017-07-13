@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yang.common.page.PageModel;
+import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.common.constants.PlatFormConstants;
 import com.yang.ssm.domain.Role;
 import com.yang.ssm.domain.User;
@@ -21,8 +22,6 @@ import com.yang.ssm.domain.UserRole;
 import com.yang.ssm.service.RoleService;
 import com.yang.ssm.service.UserService;
 import com.yang.ssm.utils.MD5Util;
-
-import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("system/user")
@@ -66,7 +65,7 @@ public class UserController {
 			model.addAttribute("user", user);
 			
 			List<UserRole> userRoleList = userService.selectUserRoleByUserId(userId);
-			model.addAttribute("userRoleJson", JSONArray.fromObject(userRoleList).toString());
+			model.addAttribute("userRoleJson", GsonUtils.toJson(userRoleList));
 		}
 		if(PlatFormConstants.PAGE_TYPE_DETAIL.equals(pageType) || PlatFormConstants.PAGE_TYPE_DELETE.equals(pageType)){
 			returnPage = ROOT_URL + "user_detail";

@@ -7,17 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.dao.MenuMapper;
 import com.yang.ssm.dao.RoleMenuMapper;
 import com.yang.ssm.domain.Menu;
 import com.yang.ssm.service.MenuService;
-
-import net.sf.json.JSONArray;
 
 /**
  * 
@@ -93,7 +92,7 @@ public class MenuServiceImpl implements MenuService {
 					treeList.add(map);
 				}
 			}
-			resultTreeData = JSONArray.fromObject(treeList).toString();
+			resultTreeData = GsonUtils.toJson(treeList);
 		}
 		return resultTreeData;
 	}

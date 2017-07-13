@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.common.constants.PlatFormConstants;
 import com.yang.ssm.domain.Menu;
 import com.yang.ssm.service.MenuService;
 import com.yang.ssm.utils.ResponseUtils;
-
-import net.sf.json.JSONObject;
 
 /**
  * 
@@ -70,7 +69,7 @@ public class MenuController {
 			resultMap.put(PlatFormConstants.RESPONSE_CODE, PlatFormConstants.CODE_ERROR);
 			resultMap.put(PlatFormConstants.RESPONSE_MESSAGE, "操作失败，菜单ID为空！");
 		}
-		ResponseUtils.renderHtmlJson(response, JSONObject.fromObject(resultMap).toString());
+		ResponseUtils.renderHtmlJson(response, GsonUtils.toJson(resultMap));
 		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 	
@@ -93,7 +92,7 @@ public class MenuController {
 			resultMap.put(PlatFormConstants.RESPONSE_CODE, PlatFormConstants.CODE_ERROR);
 			resultMap.put(PlatFormConstants.RESPONSE_MESSAGE, "操作失败，菜单ID为空！");
 		}
-		ResponseUtils.renderHtmlJson(response, JSONObject.fromObject(resultMap).toString());
+		ResponseUtils.renderHtmlJson(response, GsonUtils.toJson(resultMap));
 		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}
 	
