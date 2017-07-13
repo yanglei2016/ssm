@@ -155,6 +155,12 @@
 			<version>1.7.13</version>
 		</dependency>
         <!-- log4j end-->
+        <!-- 使用javaMail发送邮件 配合spring-context-support-->
+		<dependency>  
+            <groupId>javax.mail</groupId>  
+            <artifactId>mail</artifactId>  
+            <version>1.4.1</version>  
+        </dependency>
         <!-- pdf工具类 start-->
         <dependency>
 			<groupId>com.itextpdf</groupId>
@@ -181,19 +187,7 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
-       </dependency>
-       <!-- xmljbean转化时用,要加入exclusions节点，不然会报错 -->
-       <dependency>
-		    <groupId>org.jdom</groupId>
-		    <artifactId>jdom</artifactId>
-		    <version>1.1.2</version>
-		    <exclusions>
-        		<exclusion>
-            		<groupId>jaxen</groupId>
-            		<artifactId>jaxen</artifactId>
-            	</exclusion>
-        	</exclusions>
-		</dependency>	
+        </dependency>
 		
 		<dependency>
 		  <groupId>commons-codec</groupId>
@@ -204,11 +198,6 @@
 		  <groupId>commons-httpclient</groupId>
 		  <artifactId>commons-httpclient</artifactId>
 		  <version>3.1</version>
-		</dependency>
-		<dependency>
-		  <groupId>com.google.code.gson</groupId>
-		  <artifactId>gson</artifactId>
-		  <version>2.2.2</version>
 		</dependency>
 		
 		<!-- 引入dubbo服务 start-->
@@ -244,15 +233,7 @@
 			<artifactId>spring-jms</artifactId>
 			<version>4.2.2.RELEASE</version>
 		</dependency>
-		
-		<!-- 使用javaMail发送邮件 -->
-		<dependency>  
-            <groupId>javax.mail</groupId>  
-            <artifactId>mail</artifactId>  
-            <version>1.4.1</version>  
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <!-- jedis -->
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
