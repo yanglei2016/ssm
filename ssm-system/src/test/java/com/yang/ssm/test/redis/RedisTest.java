@@ -19,6 +19,6 @@ public class RedisTest extends BaseTest {
 	@Test
 	public void testGetSet(){
 		String key = "name";
-		redisUtils.setStr(key, "zhangsan111");
+		redisUtils.set(key, "zhangsan111");
 	}
 }
