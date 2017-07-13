@@ -1,4 +1,4 @@
-package com.yang.ssm.common.constants;
+package com.yang.common.contants;
 /**
  * 框架常量类
  * @author yanglei

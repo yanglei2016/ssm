@@ -16,8 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yang.common.contants.PlatFormConstants;
 import com.yang.common.tools.json.GsonUtils;
-import com.yang.ssm.common.constants.PlatFormConstants;
 import com.yang.ssm.domain.Menu;
 import com.yang.ssm.service.MenuService;
 import com.yang.ssm.utils.ResponseUtils;

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.yang.ssm.common.constants.PlatFormConstants;
+import com.yang.common.contants.PlatFormConstants;
 import com.yang.ssm.common.vo.UserVo;
 
 /**

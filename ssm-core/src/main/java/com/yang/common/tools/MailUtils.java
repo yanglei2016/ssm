@@ -13,7 +13,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import com.yang.ssm.common.constants.PlatFormConstants;
+import com.yang.common.contants.PlatFormConstants;
 
 /**
  * 邮件发送工具类

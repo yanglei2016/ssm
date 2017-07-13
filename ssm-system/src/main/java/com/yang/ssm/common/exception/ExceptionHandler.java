@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yang.ssm.common.constants.PlatFormConstants;
+import com.yang.common.contants.PlatFormConstants;
 
 /**
  * 异常拦截处理
