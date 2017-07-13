@@ -23,4 +23,5 @@
     	<constructor-arg index="1" ref="jedisPoolConfig"/>
     </bean>
     
+    <bean id="redisLock" class="com.yang.common.tools.redis.RedisLock"/>
 </beans>

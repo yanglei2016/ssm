@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import redis.clients.jedis.ShardedJedis;
 
@@ -13,7 +12,6 @@ import redis.clients.jedis.ShardedJedis;
  * 
  * @author yanglei 2017年7月13日 下午3:14:40
  */
-@Component
 public class RedisLock {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
