@@ -33,7 +33,7 @@ public class RedisUtils {
 	/**
 	 * jedis init
 	 * @param shardingNodes
-	 * 			"192.168.200.191:6379,192.168.200.191:6380,192.168.200.191:6381,192.168.200.191:63782"
+	 * 			"192.168.0.100:6379,192.0.101.191:6380"
 	 * @param jedisPoolConfig
 	 * 			jedis pool config
 	 * @author yanglei
@@ -184,13 +184,29 @@ public class RedisUtils {
         }
         return null;
     }
+    
+    public boolean setnx(String key, String value, int seconds) {
+        ShardedJedis jedis = getJ();
+        try {
+            if(jedis.setnx(key, value) != 1){
+            	
+            }
+            jedis.expire(key, seconds);
+            return true;
+        } catch (Exception e) {
+            logger.error("set error", e);
+        } finally {
+            releaseJ(jedis);
+        }
+        return false;
+    }
 	
-	private ShardedJedis getJ(){
+	protected ShardedJedis getJ(){
 		return shardedJedisPool.getResource();
 	}
 	
 	@SuppressWarnings("deprecation")
-	private void releaseJ(ShardedJedis jedis){
+	protected void releaseJ(ShardedJedis jedis){
 		if (jedis != null){
 			shardedJedisPool.returnResourceObject(jedis);
 		}
