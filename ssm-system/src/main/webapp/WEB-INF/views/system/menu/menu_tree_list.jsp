@@ -33,6 +33,9 @@
 				<input type="button" value="新增" class="btn btn-info" style="width:80px;" name="saveBtn" onclick="toMenuSave()"/>
 				<br/><br/>
 				<input type="button" value="删除" class="btn btn-info" style="width:80px;" name="delBtn" onclick="deleteMenu()"/>
+				<br/><br/>
+				<input type="button" value="新增" class="btn btn-info" style="width:80px;" name="addBtn" id="addBtn" onclick="toMenuSaveDiv()"/>
+				<a  class="btn btn-info btn-small"  id="aaaaaa" href="#addDiv" role="button" data-toggle="modal" style="display: none;"/>
 			</td>
 			<td height="400px" align="center" valign="top">
 				<form action="doMenuSave.do" method="post" name="treeForm" id="treeForm">
@@ -77,6 +80,54 @@
 			</td>
 		</tr>
 	</table>
+	
+	
+	<div id="addDiv" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:700px; margin-left:-450px; top:20%">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">新增</h3>
+		</div>
+		<div class="modal-body">
+		 <table class="table table-bordered">
+		  <tbody>
+		    <tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">上级菜单</td>
+				<td><input type="text" name="parentId1" id="parentId1" class="span3" value="" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">菜单编号</td>
+				<td><input type="text" name="menuId" id="menuId" class="span3" value="" /></td>
+			</tr>
+			<tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">菜单名称</td>
+				<td><input type="text" name="menuName" id="menuName" class="span3" value="" /></td>
+			</tr>
+			<tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">菜单类型</td>
+				<td>
+					<select name="menuType" id="menuType" class="span3 required">
+	        			<option value="M">菜单</option>
+			          	<option value="B">按钮</option>
+	        		</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">请求链接</td>
+				<td><input type="text" name="reqUrl" id="reqUrl" class="span3" value="" /></td>
+			</tr>
+			<tr>
+				<td width="40%" align="right" bgcolor="#f1f1f1">序号</td>
+				<td><input type="text" name="orderSeq" id="orderSeq" class="span3" value="" /></td>
+			</tr>
+		  </tbody>
+		</table>
+		</div>
+		<div class="modal-footer">
+			 <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">保存</button> 
+             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">取消</button> 
+		</div>
+	</div>
+	
   </div> 
   </div>
   </div>

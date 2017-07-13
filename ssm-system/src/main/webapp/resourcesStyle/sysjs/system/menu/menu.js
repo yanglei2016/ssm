@@ -130,3 +130,22 @@
 	}
 
 //*************************菜单树*********end*************************	
+	//打开新增页面
+	function toMenuSaveDiv(){
+		var treeObj = $.fn.zTree.getZTreeObj("menuTree");
+		var treeNodes = treeObj.getSelectedNodes();
+		if(treeNodes == null || treeNodes.length != 1){
+			alert("请选择要新增的菜单的父菜单！");
+		}else{
+			var parentId = treeNodes[0].id;
+			var parentMenuName = treeNodes[0].name;
+			$("#parentId1").val(parentId);
+			
+//			$("#addBtn").prop("data-toggle", "modal");
+//			$("#addBtn").prop("href", "#addDiv");
+			
+			
+			
+			$("#aaaaaa").click();
+		}
+	}
