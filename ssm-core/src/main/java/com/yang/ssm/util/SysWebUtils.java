@@ -34,7 +34,7 @@ public class SysWebUtils {
 	 * @author yanglei
 	 * 2017年7月14日 下午4:44:33
 	 */
-	public void refreshAuto(){
+	public void refreshAuth(){
 		UserVo userVo = (UserVo)WebUtils.getSessionAttribute(request, PlatFormConstants.USER_INFO);
 		this.getMenuIdMap(userVo);
 	}

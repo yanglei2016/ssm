@@ -49,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
 		List<RoleMenu> roleMenuList = this.getRoleMenuList(role.getRoleId(), menuIds);
 		roleMenuMapper.batchInsert(roleMenuList);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 
 	@Transactional
@@ -61,7 +61,7 @@ public class RoleServiceImpl implements RoleService {
 		List<RoleMenu> roleMenuList = this.getRoleMenuList(role.getRoleId(), menuIds);
 		roleMenuMapper.batchInsert(roleMenuList);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 	
 	@Transactional
@@ -71,7 +71,7 @@ public class RoleServiceImpl implements RoleService {
 		roleMenuMapper.deleteRoleMenuByRoleId(roleId);
 		userRoleMapper.deleteUserRoleByRoleId(roleId);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 
 	@Override

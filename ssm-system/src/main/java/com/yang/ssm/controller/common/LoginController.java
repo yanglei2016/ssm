@@ -52,7 +52,7 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				session.setAttribute(PlatFormConstants.USER_INFO, userVo);
 				
-				sysWebUtils.refreshAuto();
+				sysWebUtils.refreshAuth();
 			}else{
 				throw new RuntimeException("用户名或密码错误");
 			}

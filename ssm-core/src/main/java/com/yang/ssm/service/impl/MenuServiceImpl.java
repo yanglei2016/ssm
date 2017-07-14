@@ -118,21 +118,21 @@ public class MenuServiceImpl implements MenuService {
 		
 		roleMenuMapper.deleteRoleMenuByMenuIds(paramMap);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 	
 	@Override
 	public void insert(Menu menu) {
 		menuMapper.insert(menu);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 	
 	@Override
 	public void update(Menu menu) {
 		menuMapper.updateByMenuId(menu);
 		
-		sysWebUtils.refreshAuto();
+		sysWebUtils.refreshAuth();
 	}
 	
 	@Override
