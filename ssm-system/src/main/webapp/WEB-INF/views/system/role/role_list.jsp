@@ -32,8 +32,8 @@
 			<tr>
 				<td class="text-center">
 					<input type="submit" value="查询"class="btn btn-info " style="width: 80px;" />
-					<input type="button" id="addBtn" value="新增" class="btn btn-info "
-						style="width: 80px;" onclick="roleInsert()" />
+					<ssm:auth no="010201"><input type="button" id="addBtn" value="新增" class="btn btn-info "
+						style="width: 80px;" onclick="roleInsert()" /></ssm:auth>
 				</td>
 			</tr>
 		</table>
@@ -58,9 +58,9 @@
 						<td align="center">${bean.roleName}</td>
 						<td align="center">${bean.remark}</td>
 						<td align="center">
-							<a href="toRoleOperation.do?pageType=detail&roleId=${bean.roleId}">详细</a> |
-			           		<a href="toRoleOperation.do?pageType=update&roleId=${bean.roleId}">修改</a> |
-			           		<a href="toRoleOperation.do?pageType=delete&roleId=${bean.roleId}">删除</a>
+							<a href="toRoleOperation.do?pageType=detail&roleId=${bean.roleId}">详细</a>
+			           		<ssm:auth no="010202">| <a href="toRoleOperation.do?pageType=update&roleId=${bean.roleId}">修改</a></ssm:auth>
+			           		<ssm:auth no="010203">| <a href="toRoleOperation.do?pageType=delete&roleId=${bean.roleId}">删除</a></ssm:auth>
 						</td>
 					</tr>
 				</c:forEach>

@@ -100,7 +100,7 @@ public class SysAuthTag extends BodyTagSupport {
 	}
 	
 	private String getStrExp(String express) throws JspException {
-		return (String) getExp(express);
+		return String.valueOf(getExp(express));
 	}
 	
 	private Object getExp(String express) throws JspException {

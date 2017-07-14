@@ -56,9 +56,9 @@
 						<td align="center">${bean.userId}</td>
 						<td align="center">${bean.userName}</td>
 						<td align="center">
-							<a href="toUserOperation.do?pageType=detail&userId=${bean.userId}">详细</a> |
-			           		<ssm:auth no="010102"><a href="toUserOperation.do?pageType=update&userId=${bean.userId}">修改</a> |</ssm:auth>
-			           		<a href="toUserOperation.do?pageType=delete&userId=${bean.userId}">删除</a>
+							<a href="toUserOperation.do?pageType=detail&userId=${bean.userId}">详细</a>
+			           		<ssm:auth no="010102">| <a href="toUserOperation.do?pageType=update&userId=${bean.userId}">修改</a></ssm:auth>
+			           		<ssm:auth no="010103">| <a href="toUserOperation.do?pageType=delete&userId=${bean.userId}">删除</a></ssm:auth>
 						</td>
 					</tr>
 				</c:forEach>

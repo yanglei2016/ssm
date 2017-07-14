@@ -19,9 +19,9 @@ public interface MenuService {
 	
 	public void batchDeleteMenu(String menuIds);
 	
-	public int insert(Menu menu);
+	public void insert(Menu menu);
 	
-	public int update(Menu menu);
+	public void update(Menu menu);
 	
 	public List<Menu> selectMenuByUserId(String userId);
 }

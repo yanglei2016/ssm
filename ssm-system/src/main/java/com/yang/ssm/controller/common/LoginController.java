@@ -1,9 +1,5 @@
 package com.yang.ssm.controller.common;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yang.common.contants.PlatFormConstants;
 import com.yang.common.tools.MD5Util;
 import com.yang.ssm.common.vo.UserVo;
-import com.yang.ssm.domain.Menu;
 import com.yang.ssm.domain.User;
-import com.yang.ssm.service.MenuService;
 import com.yang.ssm.service.UserService;
+import com.yang.ssm.util.SysWebUtils;
 
 /**
  * 登录
@@ -35,10 +30,9 @@ public class LoginController {
 	private String LOGIN_PAGE = "login";
 	
 	@Autowired
-	private MenuService menuService;
-	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private SysWebUtils sysWebUtils;
 	
 	/**
 	 * 登录
@@ -55,10 +49,10 @@ public class LoginController {
 				UserVo userVo = new UserVo();
 				userVo.setUserId(user.getUserId());
 				userVo.setUserName(user.getUserName());
-				this.getMenuIdMap(userVo);
-				
 				HttpSession session = request.getSession();
 				session.setAttribute(PlatFormConstants.USER_INFO, userVo);
+				
+				sysWebUtils.refreshAuto();
 			}else{
 				throw new RuntimeException("用户名或密码错误");
 			}
@@ -82,18 +76,5 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.removeAttribute(PlatFormConstants.USER_INFO);
 		return LOGIN_PAGE;
-	}
-	
-	private void getMenuIdMap(UserVo userVo){
-		Map<String, String> menuIdMap = null;
-		List<Menu> menuList = menuService.selectMenuByUserId(userVo.getUserId());
-		if(menuList != null && menuList.size() > 0){
-			menuIdMap = new HashMap<String, String>();
-			for(Menu menu : menuList){
-				menuIdMap.put(menu.getMenuId(), menu.getMenuId());
-			}
-			userVo.setMenuIdMap(menuIdMap);
-		}
-		
 	}
 }

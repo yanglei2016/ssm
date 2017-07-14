@@ -17,6 +17,7 @@ import com.yang.ssm.dao.MenuMapper;
 import com.yang.ssm.dao.RoleMenuMapper;
 import com.yang.ssm.domain.Menu;
 import com.yang.ssm.service.MenuService;
+import com.yang.ssm.util.SysWebUtils;
 
 /**
  * 
@@ -30,6 +31,8 @@ public class MenuServiceImpl implements MenuService {
 	private MenuMapper menuMapper;
 	@Autowired
 	private RoleMenuMapper roleMenuMapper;
+	@Autowired
+	private SysWebUtils sysWebUtils;
 	
 	@Override
 	public List<Menu> selectLeftMenuList(String userId) {
@@ -114,16 +117,22 @@ public class MenuServiceImpl implements MenuService {
 		menuMapper.deleteMenuByMenuIds(paramMap);
 		
 		roleMenuMapper.deleteRoleMenuByMenuIds(paramMap);
+		
+		sysWebUtils.refreshAuto();
 	}
 	
 	@Override
-	public int insert(Menu menu) {
-		return menuMapper.insert(menu);
+	public void insert(Menu menu) {
+		menuMapper.insert(menu);
+		
+		sysWebUtils.refreshAuto();
 	}
 	
 	@Override
-	public int update(Menu menu) {
-		return menuMapper.updateByMenuId(menu);
+	public void update(Menu menu) {
+		menuMapper.updateByMenuId(menu);
+		
+		sysWebUtils.refreshAuto();
 	}
 	
 	@Override

@@ -16,6 +16,7 @@ import com.yang.ssm.dao.UserRoleMapper;
 import com.yang.ssm.domain.Role;
 import com.yang.ssm.domain.RoleMenu;
 import com.yang.ssm.service.RoleService;
+import com.yang.ssm.util.SysWebUtils;
 
 /**
  * 
@@ -31,6 +32,8 @@ public class RoleServiceImpl implements RoleService {
 	private RoleMenuMapper roleMenuMapper;
 	@Autowired
 	private UserRoleMapper userRoleMapper;
+	@Autowired
+	private SysWebUtils sysWebUtils;
 	
 	@Override
 	public Role selectRoleById(Integer roleId) {
@@ -45,6 +48,8 @@ public class RoleServiceImpl implements RoleService {
 		
 		List<RoleMenu> roleMenuList = this.getRoleMenuList(role.getRoleId(), menuIds);
 		roleMenuMapper.batchInsert(roleMenuList);
+		
+		sysWebUtils.refreshAuto();
 	}
 
 	@Transactional
@@ -55,6 +60,8 @@ public class RoleServiceImpl implements RoleService {
 		
 		List<RoleMenu> roleMenuList = this.getRoleMenuList(role.getRoleId(), menuIds);
 		roleMenuMapper.batchInsert(roleMenuList);
+		
+		sysWebUtils.refreshAuto();
 	}
 	
 	@Transactional
@@ -63,6 +70,8 @@ public class RoleServiceImpl implements RoleService {
 		roleMapper.deleteByPrimaryKey(roleId);
 		roleMenuMapper.deleteRoleMenuByRoleId(roleId);
 		userRoleMapper.deleteUserRoleByRoleId(roleId);
+		
+		sysWebUtils.refreshAuto();
 	}
 
 	@Override
