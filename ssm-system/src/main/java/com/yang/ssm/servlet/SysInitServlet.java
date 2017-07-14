@@ -1,7 +1,5 @@
 package com.yang.ssm.servlet;
 
-import java.util.List;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +12,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.yang.common.contants.PlatFormConstants;
-import com.yang.common.tools.json.GsonUtils;
-import com.yang.ssm.domain.User;
-import com.yang.ssm.service.UserService;
 
 /**
  * 系统初始化加载类
@@ -31,8 +26,6 @@ public class SysInitServlet extends HttpServlet {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	private UserService userService;
-	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		String message = "系统初始化";
@@ -40,9 +33,9 @@ public class SysInitServlet extends HttpServlet {
 		
 		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(config.getServletContext());
 		
-		userService = ctx.getBean("userServiceImpl", UserService.class);
-		List<User> userList = userService.selectUserList(null);
-		logger.info(GsonUtils.toJson(userList));
+//		UserService userService = ctx.getBean("userServiceImpl", UserService.class);
+//		List<User> userList = userService.selectUserList(null);
+//		logger.info(GsonUtils.toJson(userList));
 		
 		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}

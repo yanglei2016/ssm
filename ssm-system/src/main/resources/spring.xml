@@ -50,7 +50,7 @@
     <!-- dubbo -->
 <!--     <import resource="config/dubbo.xml"/> -->
     <!-- redis -->
-    <import resource="config/redis.xml"/>
+<!--     <import resource="config/redis.xml"/> -->
     
     <!-- 其他配置=============end============= -->
 </beans>
