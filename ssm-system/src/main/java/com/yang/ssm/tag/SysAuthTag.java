@@ -58,7 +58,7 @@ public class SysAuthTag extends BodyTagSupport {
 			boolean showFlag = checkAuth();
 			if(!showFlag){
 				if(JspHtmlString.contains("<input")){
-					JspHtmlString = JspHtmlString.replace("<input", "<input disabled=\"disabled\"");
+					JspHtmlString = JspHtmlString.replace("<input", "<input type=\"hidden\"");
 				}else{
 					JspHtmlString="";
 				}
