@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.yang.common.contants.PlatFormConstants;
+import com.yang.common.tools.PropertiesUtils;
 import com.yang.ssm.common.vo.UserVo;
 
 /**
@@ -46,7 +47,8 @@ public class LoginFilter implements Filter {
 		requestUri = requestUri.replace(request.getContextPath()+"/", "");
 		
 		// 是否跳过检查
-		if(Pattern.matches("index.do|login.do|logout.do", requestUri)){
+		String ignoreUrl = PropertiesUtils.getProp("login.ignore.passUrl");
+		if(Pattern.matches(ignoreUrl, requestUri)){
 			filterChain.doFilter(req, res);
 			return ;
 		}else{
