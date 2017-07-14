@@ -26,9 +26,10 @@ public class GsonUtils {
 
 	/**
 	 * 转成json
-	 * 
 	 * @param object
 	 * @return
+	 * @author yanglei
+	 * 2017年7月14日 上午10:44:42
 	 */
 	public static String toJson(Object object) {
 		String gsonString = null;
@@ -40,10 +41,11 @@ public class GsonUtils {
 
 	/**
 	 * 转成bean
-	 * 
 	 * @param gsonString
 	 * @param cls
 	 * @return
+	 * @author yanglei
+	 * 2017年7月14日 上午10:44:25
 	 */
 	public static <T> T toBean(String gsonString, Class<T> cls) {
 		T t = null;
@@ -55,10 +57,11 @@ public class GsonUtils {
 
 	/**
 	 * 转成list
-	 * 
 	 * @param gsonString
 	 * @param cls
 	 * @return
+	 * @author yanglei
+	 * 2017年7月14日 上午10:44:17
 	 */
 	public static <T> List<T> toList(String gsonString, Class<T> cls) {
 		List<T> list = null;
@@ -69,10 +72,11 @@ public class GsonUtils {
 	}
 
 	/**
-	 * 转成list中有map的
-	 * 
+	 * 转成list（含有map）
 	 * @param gsonString
 	 * @return
+	 * @author yanglei
+	 * 2017年7月14日 上午10:43:43
 	 */
 	public static <T> List<Map<String, T>> toListMaps(String gsonString) {
 		List<Map<String, T>> list = null;
@@ -83,10 +87,11 @@ public class GsonUtils {
 	}
 
 	/**
-	 * 转成map的
-	 * 
+	 * 转成map
 	 * @param gsonString
 	 * @return
+	 * @author yanglei
+	 * 2017年7月14日 上午10:42:56
 	 */
 	public static <T> Map<String, T> toMaps(String gsonString) {
 		Map<String, T> map = null;
