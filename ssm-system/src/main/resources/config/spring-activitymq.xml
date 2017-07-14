@@ -28,7 +28,7 @@
         <property name="receiveTimeout" value="600"></property>
     </bean>
     <!-- 工具类 -->
-    <bean id="activeMqUtil" class="com.yang.ssm.utils.ActiveMqUtil">
+    <bean id="activeMqUtil" class="com.yang.common.tools.mq.ActiveMqUtil">
     	<property name="jmsTemplate" ref="jmsTemplate" />
     </bean>
     

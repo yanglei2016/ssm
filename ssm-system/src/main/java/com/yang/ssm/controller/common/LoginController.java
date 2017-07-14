@@ -15,12 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yang.common.contants.PlatFormConstants;
+import com.yang.common.tools.MD5Util;
 import com.yang.ssm.common.vo.UserVo;
 import com.yang.ssm.domain.Menu;
 import com.yang.ssm.domain.User;
 import com.yang.ssm.service.MenuService;
 import com.yang.ssm.service.UserService;
-import com.yang.ssm.utils.MD5Util;
 
 /**
  * 登录

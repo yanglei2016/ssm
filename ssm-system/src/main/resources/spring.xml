@@ -33,7 +33,7 @@
     
     <import resource="config/mail.xml"/>
     <!-- ActiveMQ -->
-<!--     <import resource="config/spring-activitymq.xml"/> -->
+    <import resource="config/spring-activitymq.xml"/>
     <!-- dubbo -->
 <!--     <import resource="config/dubbo.xml"/> -->
     <!-- redis -->

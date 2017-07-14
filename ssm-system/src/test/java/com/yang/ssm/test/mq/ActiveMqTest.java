@@ -3,8 +3,8 @@ package com.yang.ssm.test.mq;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.yang.common.tools.mq.ActiveMqUtil;
 import com.yang.ssm.BaseTest;
-import com.yang.ssm.utils.ActiveMqUtil;
 
 public class ActiveMqTest extends BaseTest {
 

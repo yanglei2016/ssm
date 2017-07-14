@@ -1,4 +1,4 @@
-package com.yang.ssm.utils;
+package com.yang.common.tools.mq;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
