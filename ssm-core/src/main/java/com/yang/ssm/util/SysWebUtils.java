@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.yang.common.contants.PlatFormConstants;
@@ -24,8 +26,6 @@ import com.yang.ssm.service.MenuService;
 public class SysWebUtils {
 	
 	@Autowired
-	private HttpServletRequest request;
-	@Autowired
 	private MenuService menuService;
 	
 	/**
@@ -35,6 +35,7 @@ public class SysWebUtils {
 	 * 2017年7月14日 下午4:44:33
 	 */
 	public void refreshAuth(){
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		UserVo userVo = (UserVo)WebUtils.getSessionAttribute(request, PlatFormConstants.USER_INFO);
 		this.getMenuIdMap(userVo);
 	}

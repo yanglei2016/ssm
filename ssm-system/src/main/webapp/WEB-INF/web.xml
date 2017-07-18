@@ -12,6 +12,9 @@
         <description>Spring监听器</description>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
     
     <!-- ContextLoaderListener初始化Spring上下文时需要使用到的contextConfigLocation参数 -->
     <context-param>
