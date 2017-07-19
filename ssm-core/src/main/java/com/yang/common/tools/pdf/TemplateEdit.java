@@ -21,7 +21,7 @@ import com.yang.common.tools.pdf.entity.TableNodeVo;
 public class TemplateEdit {
 	private static final Logger logger = LoggerFactory.getLogger(TemplateEdit.class);
 
-	public void updateTemplate(TemplateVo templateVo, DataProvideVo data) {
+	public static void updateTemplate(TemplateVo templateVo, DataProvideVo data) {
 		if (templateVo == null || data == null) {
 			return;
 		}
@@ -32,7 +32,7 @@ public class TemplateEdit {
 		}
 	}
 
-	private void updateNode(BaseNodeVo baseNodeVo, HashMap<String, Object> data) {
+	private static void updateNode(BaseNodeVo baseNodeVo, HashMap<String, Object> data) {
 		if (baseNodeVo instanceof PNodeVo) {
 			PNodeVo pNodeVo = (PNodeVo) baseNodeVo;
 			List<String> allVariables = pNodeVo.getAllVariables();
@@ -154,7 +154,7 @@ public class TemplateEdit {
 		}
 	}
 
-	private void updateTableForEachNode(TableNodeVo tableNodeVo, HashMap<String, Object> data) {
+	private static void updateTableForEachNode(TableNodeVo tableNodeVo, HashMap<String, Object> data) {
 		ForEachNodeVo forEachNodeVo = tableNodeVo.getForEachNodeVo();
 		if (forEachNodeVo == null) {
 			return;
@@ -188,7 +188,7 @@ public class TemplateEdit {
 		}
 	}
 
-	private void updatePForEachNode(PNodeVo pNodeVo, HashMap<String, Object> data) {
+	private static void updatePForEachNode(PNodeVo pNodeVo, HashMap<String, Object> data) {
 		ForEachNodeVo forEachNodeVo = pNodeVo.getForEachNodeVo();
 		if (forEachNodeVo == null) {
 			return;
@@ -224,7 +224,7 @@ public class TemplateEdit {
 		}
 	}
 
-	private boolean updateForIfNode(IfNodeVo ifNodeVo, HashMap<String, Object> data) {
+	private static boolean updateForIfNode(IfNodeVo ifNodeVo, HashMap<String, Object> data) {
 		if (ifNodeVo == null) {
 			return false;
 		}

@@ -53,7 +53,7 @@
 		where menu_id = #{menuId}
 	</select>
 	
-	<delete id="batchDeleteMenu" parameterType="java.util.Map">
+	<delete id="deleteMenuByMenuIds" parameterType="java.util.Map">
 		delete from sys_menu 
 		where menu_id in 
 		<foreach collection="menuIdList" item="menuId" open="(" close=")" separator=", ">

@@ -28,14 +28,12 @@ public class PDFTest extends BaseTest {
 		
 		String templatePath = PDFCreateUtils.getTemplatePath("01");
 		TemplateVo templateVo = PDFCreateUtils.loadTemplate(templatePath);
-		
 		String pathFileName = "F:/work/pdf/01.pdf";
 		
-		TemplateEdit service = new TemplateEdit();
-		service.updateTemplate(templateVo, data);
+		TemplateEdit.updateTemplate(templateVo, data);
 		
-		PDFCreateService pdfCreateService = new PDFCreateService();
-		if(pdfCreateService.createFile(templateVo, pathFileName)){
+		PDFCreateService service = new PDFCreateService();
+		if(service.createFile(templateVo, pathFileName)){
         	logger.info("...........成功...........");
         }else{
         	logger.info("...........失败...........");
@@ -47,7 +45,7 @@ public class PDFTest extends BaseTest {
 	public static DataProvideVo getDataProvide() {
 		HashMap<String, Object> allData = new HashMap<String, Object>();
 		
-		allData.put("contractNo", "LS201132165465");
+		allData.put("contractNo", "201132165465");
 		allData.put("year", "2017");
 		allData.put("month", "07");
 		allData.put("date", "17");

@@ -48,7 +48,8 @@
 		var treeNodes = treeObj.getSelectedNodes();
 		var menuIds = "";
 		if(treeNodes == null || treeNodes.length != 1){
-			alert("请选择要删除的的菜单！");
+//			sysAlert("请选择要删除的的菜单！");
+			sysMsg('请选择要删除的的菜单！'); 
 		}else{
 			if(confirm("确定要删除此菜单及其所有子菜单吗？")){
 				menuIds = getSelectedChildrenNodes(treeNodes[0]);
@@ -72,7 +73,8 @@
 			var treeObj = $.fn.zTree.getZTreeObj("menuTree");
 			var treeNode = treeObj.getNodeByParam("id", param.menuIds.split(",")[0], null);
 			treeObj.removeNode(treeNode);
-			alert("删除菜单成功！");
+//			alert("删除菜单成功！");
+			layer.msg('删除菜单成功！');
 		}else{
 			alert(resultMsg.message);
 		}

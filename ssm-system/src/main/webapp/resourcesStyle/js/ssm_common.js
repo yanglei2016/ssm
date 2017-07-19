@@ -71,3 +71,15 @@ function selectAllBox(ctrlId, boxName){
 		$(this).attr("checked", status);
 	});
 }
+
+//====================layer弹出层封装=============begin========================
+
+function sysMsg(msg){
+	parent.layer.msg(msg, {offset: 't'}); 
+}
+function sysAlert(msg){
+	parent.layer.alert(msg); 
+}
+
+
+//====================layer弹出层封装==============end=========================

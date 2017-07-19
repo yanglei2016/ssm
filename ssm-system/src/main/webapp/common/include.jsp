@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resourcesStyle/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resourcesStyle/css/css.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resourcesStyle/css/sys_common.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/layer.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/messages_zh.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/js/bootstrap.min.js"></script>
