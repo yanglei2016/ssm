@@ -12,13 +12,7 @@
 <%@include file="header.jsp" %>
 <div id="middle">
 <jsp:include page="left.jsp" />
-<div class="Switch"></div>
     <script type="text/javascript">
-		$(document).ready(function(e) {
-	    $(".Switch").click(function(){
-		$(".left").toggle();
-			});
-		});
 		function clickMenu(menuUrl)
 		{
 			if (menuUrl == "") 
@@ -37,6 +31,7 @@
 			menuForm.target = "systemContentIFrame";
 			menuForm.action = menuUrl;
 			menuForm.submit();
+			layer.load(2, {shade: [0.2, '#393D49']});
 		}
 	</script>
 	<div class="right"  id="mainFrame">

@@ -28,8 +28,8 @@
 	
 	//菜单单击返回
 	function onClickMenuReturn(resultMsg, param){
-//		alert("resultMsg:"+resultMsg);
-		resultMsg = $.parseJSON(resultMsg);
+//		sysMsg("resultMsg:"+resultMsg);
+//		resultMsg = $.parseJSON(resultMsg);
 		if(resultMsg.code == "success"){
 			$("#menuId").val(resultMsg.menu.menuId);
 			$("#menuName").val(resultMsg.menu.menuName);
@@ -48,7 +48,6 @@
 		var treeNodes = treeObj.getSelectedNodes();
 		var menuIds = "";
 		if(treeNodes == null || treeNodes.length != 1){
-//			sysAlert("请选择要删除的的菜单！");
 			sysMsg('请选择要删除的的菜单！'); 
 		}else{
 			if(confirm("确定要删除此菜单及其所有子菜单吗？")){
@@ -68,15 +67,13 @@
 	
 	//删除菜单后的返回
 	function deleteMenuReturn(resultMsg, param){
-		resultMsg = $.parseJSON(resultMsg);
 		if(resultMsg.code == "success"){
 			var treeObj = $.fn.zTree.getZTreeObj("menuTree");
 			var treeNode = treeObj.getNodeByParam("id", param.menuIds.split(",")[0], null);
 			treeObj.removeNode(treeNode);
-//			alert("删除菜单成功！");
-			layer.msg('删除菜单成功！');
+			sysMsg('删除菜单成功！');
 		}else{
-			alert(resultMsg.message);
+			sysMsg(resultMsg.message);
 		}
 	}
 	
@@ -101,7 +98,7 @@
 		var treeObj = $.fn.zTree.getZTreeObj("menuTree");
 		var treeNodes = treeObj.getSelectedNodes();
 		if(treeNodes == null || treeNodes.length != 1){
-			alert("请选择要新增的菜单的父菜单！");
+			sysMsg("请选择要新增的菜单的父菜单！");
 		}else{
 			var parentId = treeNodes[0].id;
 			var parentMenuName = treeNodes[0].name;
@@ -132,22 +129,3 @@
 	}
 
 //*************************菜单树*********end*************************	
-	//打开新增页面
-	function toMenuSaveDiv(){
-		var treeObj = $.fn.zTree.getZTreeObj("menuTree");
-		var treeNodes = treeObj.getSelectedNodes();
-		if(treeNodes == null || treeNodes.length != 1){
-			alert("请选择要新增的菜单的父菜单！");
-		}else{
-			var parentId = treeNodes[0].id;
-			var parentMenuName = treeNodes[0].name;
-			$("#parentId1").val(parentId);
-			
-//			$("#addBtn").prop("data-toggle", "modal");
-//			$("#addBtn").prop("href", "#addDiv");
-			
-			
-			
-			$("#aaaaaa").click();
-		}
-	}
