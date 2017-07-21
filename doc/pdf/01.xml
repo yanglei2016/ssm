@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GBK"?>
+<doc>
+	<global>
+		<font id="defaultFont" family="STSongStd-Light" charset="UniGB-UCS2-H" size="8"></font>
+		<font id="headerfooter" family="STSongStd-Light" charset="UniGB-UCS2-H" size="7" color="#c9c9c9"></font>
+		<headerfooter fontid="headerfooter" border="" align="" content1="                                                                                                                  " content2=""></headerfooter>
+		<page marginLeft="-1" marginRight="-1" marginTop="-1" marginBottom="-1" lineHeight="16"></page>
+		<attribute spacingBefore="0" spacingAfter="0" leading="10"></attribute>
+	</global>
+	<body>
+		<p align="2" fontColor="#ff0000">合同编号：${contractNo}</p>
+		<p align="1" fontSize="16">标题</p>
+		<br/>
+		<p firstLineIndent="10">正文，由以下各方于${year}年${month}月${date}日在中国XXX市XXX签署：</p>
+		<br/>
+		<table colWidths="20,20,20,20,20" borderWidth="1" padding="4" >
+			<cell><p>1</p></cell>
+			<cell colSpan="2"><p>1</p></cell>
+            <cell colSpan="2"><p>1</p></cell>
+			
+			<cell rowSpan="2"><p>1</p></cell>
+			<cell><p>1</p></cell>
+            <cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			
+			
+            <cell><p>1</p></cell>
+            <cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			
+			<cell rowSpan="2"><p>1</p></cell>
+            <cell><p>1</p></cell>
+            <cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			
+			
+            <cell><p>1</p></cell>
+            <cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+			<cell><p>1</p></cell>
+        </table>
+	   
+	   	<p>注：因计算中存在四舍五入，最后一期应收本息与之前略有不同；本协议所称“甲方”根据上下文文义指甲方之全体或各甲方中的任一主体。</p>
+	   	<p>乙方（借款人）：</p>
+	   	<p>真实姓名：${borrowRealName}</p>
+	   	<p>身份证号：${identNo}</p>
+	</body>
+</doc>

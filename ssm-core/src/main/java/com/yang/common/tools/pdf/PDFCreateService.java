@@ -23,7 +23,7 @@ public class PDFCreateService implements PdfPageEvent {
 	private PdfTemplate total;
 	
 	/**页眉 */  
-    public String header = "这是页眉";  
+    public String header = "页眉";  
     /**文档字体大小，页脚页眉最好和文本大小一致 */  
     public int presentFontSize = 10;  
     /**利用基础字体生成的字体对象，一般用于生成中文文字  */  
@@ -141,7 +141,7 @@ public class PDFCreateService implements PdfPageEvent {
 		try {
 			isNewPage = true;
 			bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
-			total = writer.getDirectContent().createTemplate(300, 10);
+			total = writer.getDirectContent().createTemplate(30, 10);
 		} catch (Exception e) {
 
 		}
@@ -163,40 +163,72 @@ public class PDFCreateService implements PdfPageEvent {
 	@Override
 	public void onCloseDocument(PdfWriter writer, Document arg1) {
 		// 7.最后一步了，就是关闭文档的时候，将模板替换成实际的 Y 值,至此，page x of y 制作完毕，完美兼容各种文档size。  
-        total.beginText();  
-        total.setFontAndSize(bf, 10);// 生成的模版的字体、颜色  
-        total.setTextMatrix(0, 0);
-        total.showText("" + (writer.getPageNumber()) + "");// 模版显示的内容  
-        total.endText();  
-        total.closePath();  
+//        total.beginText();  
+//        total.setFontAndSize(bf, 10);// 生成的模版的字体、颜色  
+//        total.setTextMatrix(0, 0);
+//        total.showText("" + (writer.getPageNumber()) + "");// 模版显示的内容  
+//        total.endText();  
+//        total.closePath();  
+        
+        ColumnText.showTextAligned(total,Element.ALIGN_LEFT,new Phrase(String.valueOf(writer.getPageNumber()-1)),2,2,0);
 	}
 
 	@Override
 	public void onEndPage(PdfWriter writer, Document document) {
 		isNewPage = true;
-		// 页数
-		PdfPTable table = new PdfPTable(2);
-		try {
-			table.setWidths(new int[] { 30, 30 });
-			table.setTotalWidth(document.getPageSize().getWidth());
-			table.setLockedWidth(true);
-			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
-			table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
-			table.getDefaultCell().setBorderWidth(0);
-			Font font = new Font(bf, 10, 0);
-			Paragraph paragraph = new Paragraph(String.format("%d/", writer.getPageNumber()), font);
-			table.addCell(paragraph);
+		
+		PdfPTable table = new PdfPTable(3);
+	     try{
+	     table.setWidths(new int[]{24,24,2});
+	     table.setTotalWidth(document.getPageSize().getWidth() - 72);
+	     table.setLockedWidth(true);
+	     table.getDefaultCell().setFixedHeight(20);
+	     table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
-			PdfPCell cell = new PdfPCell(Image.getInstance(total));
-			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			cell.setBorderWidth(0);
-			table.addCell(cell);
-			table.writeSelectedRows(0, -1, 0, 30, writer.getDirectContent());
+	     table.addCell(new Paragraph(header, new Font(bf, 10, 0)));
+	     table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+	     table.addCell("");
+	     PdfPCell cell = new PdfPCell(Image.getInstance(total));
+	     cell.setBorder(Rectangle.BOTTOM);
+	     table.addCell(cell);
+	     table.writeSelectedRows(0,-1,34,803,writer.getDirectContent());
 
-		} catch (DocumentException e) {
-			logger.error("创建页码异常", e);
-		}
+	     }
+	     catch(DocumentException de){
+	     throw new ExceptionConverter(de);
+	     }
+	     
+//		// 页数
+//		PdfPTable table = new PdfPTable(2);
+//		try {
+//			table.setWidths(new int[] { 30, 30 });
+//			table.setTotalWidth(document.getPageSize().getWidth() - 72);
+//			table.setLockedWidth(true);
+//			
+//			table.setWidthPercentage(100);// 设置表格宽度为%100
+////			table.setSplitLate(false);
+////			table.setSplitRows(true);
+//			
+//			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+//			table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
+//			table.getDefaultCell().setBorderWidth(1);
+//			table.getDefaultCell().setBorder(Rectangle.TOP);
+//			Font font = new Font(bf, 10, 0);
+//			Paragraph paragraph = new Paragraph(String.format("%d/", writer.getPageNumber()), font);
+//			table.addCell(paragraph);
+//
+//			PdfPCell cell = new PdfPCell(Image.getInstance(total));
+//			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+//			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//			cell.setBorder(Rectangle.TOP);
+//			cell.setBorderColorTop(BaseColor.RED);
+//			cell.setBorderWidth(1);
+//			table.addCell(cell);
+//			table.writeSelectedRows(0, -1, 0, 30, writer.getDirectContent());
+//
+//		} catch (DocumentException e) {
+//			logger.error("创建页码异常", e);
+//		}
 		
 //		try {  
 //            if (bf == null) {  
