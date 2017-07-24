@@ -125,7 +125,17 @@ public class MailUtils {
 			mimeMessageHelper.setTo(recipients.toArray(new String[recipients.size()]));
 			mimeMessageHelper.setFrom(mailFrom);
 			mimeMessageHelper.setSubject(subject);
-			mimeMessageHelper.setText(content);
+//			mimeMessageHelper.setText(content);
+			
+			String htmlContent = "<html><head></head><body>"
+					+ "<p>您好，您有工单需要处理，请及时查收，谢谢！</p>"
+					+ "<p>内容：</p>"
+					+ "<p>链接 ：</p>"
+					+ "<p>如果链接无法点击,麻烦您复制地址在浏览器中打开，谢谢您的配合！</p>"
+					+ "<p>如您确定以上内容已处理完毕，可忽略此邮件。</p>"
+                    + "<p>---------------------------------------------------------</p>"
+                    + "<p>本邮件为系统自动发送，请勿直接回复.</p></body></html>";
+			mimeMessageHelper.setText(htmlContent, true);
 
 			// 附件对象，添加进邮件helper内
 			for (File file : fileList) {
