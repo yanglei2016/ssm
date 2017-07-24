@@ -194,8 +194,8 @@ public class PDFCreateService implements PdfPageEvent {
         }  
     
         // 1.写入页眉  
-        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, new Phrase("页眉左边", fontDetail), document.left(), document.top() - 18, 0);
-        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_RIGHT, new Phrase("页眉右边", fontDetail), document.right(), document.top() - 18, 0);
+        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, new Phrase("页眉左边", fontDetail), document.left(), document.top() - 5, 0);
+        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_RIGHT, new Phrase("页眉右边", fontDetail), document.right(), document.top() - 5, 0);
         
         // 2.写入前半部分的 第 X页/共  
         int pageS = writer.getPageNumber();  
@@ -247,9 +247,10 @@ public class PDFCreateService implements PdfPageEvent {
 
 	@Override
 	public void onStartPage(PdfWriter writer, Document document) {
+		//页眉横线
 		try {
 			Paragraph line = new Paragraph("");  
-			line.add(new Chunk(new LineSeparator(1, 100, BaseColor.RED, Element.ALIGN_CENTER, -2)));  
+			line.add(new Chunk(new LineSeparator(1, 100, BaseColor.RED, Element.ALIGN_CENTER, 10)));  
 			document.add(line);
 		} catch (DocumentException e) {
 			e.printStackTrace();
