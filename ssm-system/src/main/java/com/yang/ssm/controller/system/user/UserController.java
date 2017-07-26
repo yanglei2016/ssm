@@ -137,8 +137,8 @@ public class UserController {
 		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		List<User> userList = userService.selectUserList(null);
-		String[] headers = {"用户ID", "用户名", "密码"};
-		ExcelUtils.exportExcel(userList, headers, "用户列表", "用户列表", request, response);
+		String[] headers = {"用户ID#getUserId", "用户名#getUserName", "密码"};
+		ExcelUtils.exportExcel(userList, headers, "用户列表", request, response);
 		
 		logger.info(PlatFormConstants.MESSAGE_END, message);
 	}

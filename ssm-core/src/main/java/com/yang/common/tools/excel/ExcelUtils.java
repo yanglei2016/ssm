@@ -33,8 +33,9 @@ public class ExcelUtils {
 	 * @author yanglei
 	 * 2017年7月26日 上午10:27:08
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void exportExcel(List excels, String[] headers,
-			String fileName, String title, HttpServletRequest request,
+			String fileName, HttpServletRequest request,
 			HttpServletResponse response) {
 		OutputStream out = null;
 		Workbook wb = null;
@@ -53,10 +54,10 @@ public class ExcelUtils {
 			out = response.getOutputStream();
 			
 			ExportExcel<T> ex = new ExportExcel<T>();
-			wb = ex.createExcel(title, headers, excels);
+			wb = ex.createExcel(headers, excels);
 			wb.write(out);
 		} catch (Exception e) {
-			logger.info("导出Excel异常：{}", e);
+			logger.error("导出Excel异常", e);
 		} finally {
 			if (out != null) {
 				try {
