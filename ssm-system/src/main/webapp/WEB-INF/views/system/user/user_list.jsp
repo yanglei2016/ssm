@@ -34,6 +34,9 @@
 					<ssm:auth no="010101">
 						<input type="button" id="addBtn" value="新增" class="btn btn-info " style="width: 80px;" onclick="userInsert()" />
 					</ssm:auth>
+					<ssm:auth no="010104">
+						<input type="button" id="addBtn" value="导出" class="btn btn-info " style="width: 80px;" onclick="exportExcel()" />
+					</ssm:auth>
 				</td>
 			</tr>
 		</table>

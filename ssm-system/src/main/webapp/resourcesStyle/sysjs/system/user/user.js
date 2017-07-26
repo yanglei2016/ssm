@@ -57,4 +57,7 @@ function doUserDelete(){
 	}
 }
 
-
+//跳转到新增页
+function exportExcel(){
+	location.href='exportExcel.do';
+}

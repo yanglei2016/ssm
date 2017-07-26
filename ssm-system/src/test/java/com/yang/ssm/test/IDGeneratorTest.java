@@ -24,12 +24,12 @@ public class IDGeneratorTest{
         for (int k = 0; k < 10; k++) {
             List<Callable<Long>> partitions = new ArrayList<Callable<Long>>();
 //            final IDGenerator idWorker = IDGenerator.getInstance();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 3000000; i++) {
                 partitions.add(new Callable<Long>() {
                     @Override
                     public Long call() throws Exception {
                     	long id = IDGenerator.getInstance().nextId();
-                    	System.out.println(id);
+//                    	System.out.println(id);
                         return id;
                     }
                 });

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yang.common.contants.PlatFormConstants;
 import com.yang.common.page.PageModel;
 import com.yang.common.tools.MD5Util;
+import com.yang.common.tools.excel.ExcelUtils;
 import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.domain.Role;
 import com.yang.ssm.domain.User;
@@ -129,5 +131,15 @@ public class UserController {
 		return PlatFormConstants.OPERATE_RESULT;
 	}
 
-	
+	@RequestMapping("exportExcel.do")
+	public void exportExcel(Model model, HttpServletRequest request, HttpServletResponse response){
+		String message = "导出列表";
+		logger.info(PlatFormConstants.MESSAGE_START, message);
+		
+		List<User> userList = userService.selectUserList(null);
+		String[] headers = {"用户ID", "用户名", "密码"};
+		ExcelUtils.exportExcel(userList, headers, "用户列表", "用户列表", request, response);
+		
+		logger.info(PlatFormConstants.MESSAGE_END, message);
+	}
 }

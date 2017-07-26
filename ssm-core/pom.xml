@@ -249,11 +249,22 @@
 			<artifactId>spring-jms</artifactId>
 			<version>4.2.2.RELEASE</version>
 		</dependency>
-        <!-- jedis -->
+        <!-- 使用jedis -->
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
 		    <version>2.9.0</version>
+		</dependency>
+		<!-- 使用POI -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.15</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>3.15</version>
 		</dependency>
     </dependencies>
 </project>
