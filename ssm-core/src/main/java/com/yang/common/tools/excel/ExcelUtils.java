@@ -25,7 +25,7 @@ public class ExcelUtils {
 	/**
 	 * 导出Excel
 	 * @param excels
-	 * @param headers
+	 * @param headers	列标题#getMethodName
 	 * @param fileName
 	 * @param title
 	 * @param request
