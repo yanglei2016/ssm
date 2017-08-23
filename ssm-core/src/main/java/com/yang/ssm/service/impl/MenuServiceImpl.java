@@ -80,7 +80,7 @@ public class MenuServiceImpl implements MenuService {
 	public String getTreeData() {
 		String resultTreeData = "";
 		List<Menu> menuList = menuMapper.selectMenuList();
-		if(null != menuList && menuList.size() >= 0){
+		if(null != menuList && menuList.size() > 0){
 			Map<String, String> map = null;
 			List<Map<String, String>> treeList = new ArrayList<Map<String,String>>();
 			for(Menu menu : menuList){
