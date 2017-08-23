@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yang.common.datasource.DataSourceType;
 import com.yang.ssm.dao.UserMapper;
 import com.yang.ssm.dao.UserRoleMapper;
 import com.yang.ssm.domain.User;
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
 		userRoleMapper.deleteUserRoleByUserId(userId);
 	}
 
+	@DataSourceType(slave = true)
 	@Override
 	public List<User> selectUserList(Map<String, Object> map) {
 		return userMapper.selectUserList(map);

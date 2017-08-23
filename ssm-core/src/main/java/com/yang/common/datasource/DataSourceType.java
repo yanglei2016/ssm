@@ -1,5 +1,6 @@
 package com.yang.common.datasource;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -11,9 +12,10 @@ import java.lang.annotation.Target;
  * @author yanglei
  * 2017年8月10日 上午10:14:26
  */
-@Inherited
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@Documented
 public @interface DataSourceType {
 	boolean slave() default false;
 }

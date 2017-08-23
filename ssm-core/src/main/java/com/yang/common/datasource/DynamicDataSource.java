@@ -113,7 +113,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 		LinkedList<String> datasource = dataSourceHolder.get();
 		String key = datasource.peekFirst() == null ? DEFAULT : datasource.peekFirst();
 		if(logger.isDebugEnabled()){
-    		logger.debug("currenty datasource : {}", datasource);
+    		logger.debug("currenty datasource : {}", key);
     	}
 		if(null != key){
 			if(DEFAULT.equals(key)){

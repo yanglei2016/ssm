@@ -59,7 +59,7 @@
 	<!-- Spring view分发器 -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>com.yang.platform.core.mvc.SpringMVCServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:springmvc-servlet.xml</param-value>
