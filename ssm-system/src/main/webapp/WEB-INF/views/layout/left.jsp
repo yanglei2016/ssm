@@ -32,7 +32,7 @@ window.onload = function() {
 				<c:if test="${menu.menuLevel == 2}">
 					<!-- 根目录不展示 -->
 					<c:if test="${menuBean.menuId ne '0' }">
-						<a href="javascript:void(0)" onclick="clickMenu('${menu.reqUrl}')" >${menu.menuName }</a>
+						<a href="javascript:void(0)" onclick="clickMenu('${menu.reqUrl}', this)" >${menu.menuName }</a>
 					</c:if>
 					<c:if test="${index.last}">
 						</div>

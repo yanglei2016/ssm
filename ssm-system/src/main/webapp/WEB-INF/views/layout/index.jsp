@@ -13,7 +13,7 @@
 <div id="middle">
 <jsp:include page="left.jsp" />
     <script type="text/javascript">
-		function clickMenu(menuUrl)
+		function clickMenu(menuUrl, obj)
 		{
 			if (menuUrl == "") 
 			{
@@ -31,6 +31,8 @@
 			menuForm.target = "systemContentIFrame";
 			menuForm.action = menuUrl;
 			menuForm.submit();
+			$(obj).parent().parent().find("div").find("a").removeClass("current");
+			$(obj).addClass("current");
 			layer.load(2, {shade: [0.2, '#393D49']});
 		}
 	</script>
