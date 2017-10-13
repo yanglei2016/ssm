@@ -13,7 +13,7 @@ package com.yang.common.wheel;
 public class Main {
 	
 	public static void main(String[] args) throws InterruptedException {
-		final Wheel<String> wheel = Wheel.getInstance(10);
+		final Wheel<String> wheel = Wheel.getInstance(3);
 		
 		wheel.addExpirationIntecepter(new ExpirationIntecepter<String>() {
 			

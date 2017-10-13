@@ -24,7 +24,7 @@ public class Clocker<E> implements Runnable{
 		while (WheelState.SHUTDOWN != wheel.getWheelState() && releaseLoopCount>0) {
 			try {
 				if(WheelState.RUNNING == wheel.getWheelState())
-					Thread.sleep(1000);
+					Thread.sleep(5000);
 				
 				if(WheelState.CLOSEING == wheel.getWheelState())
 					releaseLoopCount--;
