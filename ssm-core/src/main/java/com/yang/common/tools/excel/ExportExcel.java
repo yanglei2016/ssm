@@ -26,10 +26,12 @@ import org.slf4j.LoggerFactory;
 public class ExportExcel<T> {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	/**标题分隔符*/
+	private static final String TITLE_SEPARATOR = "=";
 	
 	/**
 	 * 
-	 * @param headers	列标题#getMethodName
+	 * @param headers	列标题=getMethodName
 	 * @param dataset
 	 * @return
 	 * @author yanglei
@@ -45,7 +47,6 @@ public class ExportExcel<T> {
 			Sheet sheet = workbook.createSheet();
 			// 设置表格默认列宽度
 			sheet.setDefaultColumnWidth(18);
-			
 			// 生成并设置另一个样式
 			CellStyle titleStyle = this.getTitleStyle(workbook);
 			CellStyle contentStyle = this.getContentStyle(workbook);
@@ -55,7 +56,7 @@ public class ExportExcel<T> {
 			for (int i = 0, len = headers.length; i < len; i++) {
 				Cell cell = row.createCell(i);
 				cell.setCellStyle(titleStyle);
-				XSSFRichTextString text = new XSSFRichTextString(headers[i].split("#", 2)[0]);
+				XSSFRichTextString text = new XSSFRichTextString(headers[i].split(TITLE_SEPARATOR, 2)[0]);
 				cell.setCellValue(text);
 			}
 			
@@ -155,7 +156,7 @@ public class ExportExcel<T> {
 	private String getMethodName(String headers){
 		String methodName = null;
 		if(StringUtils.isNotBlank(headers)){
-			String[] tmpArr = headers.split("#", 2);;
+			String[] tmpArr = headers.split(TITLE_SEPARATOR, 2);;
 			if(tmpArr != null && tmpArr.length == 2){
 				methodName = tmpArr[1];
 			}

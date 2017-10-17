@@ -91,6 +91,7 @@ public class UserController {
 			if(StringUtils.isEmpty(user.getUserId())){
 				throw new RuntimeException("用户userId不能为空。");
 			}
+			user.setPassword(MD5Util.md5(user.getPassword()));
 			userService.updateUser(user, roleIds);
 		}else if(PlatFormConstants.PAGE_TYPE_INSERT.equals(pageType)){
 			User checkUser = userService.selectUser(user.getUserId());
@@ -137,7 +138,7 @@ public class UserController {
 		logger.info(PlatFormConstants.MESSAGE_START, message);
 		
 		List<User> userList = userService.selectUserList(null);
-		String[] headers = {"用户ID#getUserId", "用户名#getUserName", "密码"};
+		String[] headers = {"用户ID=getUserId", "用户名=getUserName", "密码"};
 		ExcelUtils.exportExcel(userList, headers, "用户列表", request, response);
 		
 		logger.info(PlatFormConstants.MESSAGE_END, message);

@@ -99,6 +99,9 @@ public class PageModel {
         if (pageSizeInt < 1) {
         	pageSizeInt = 20;
         }
-        return new PageModel(pageSizeInt, pageNumInt-1);
+        
+        PageModel pageModel = new PageModel(pageSizeInt, pageNumInt-1);
+        PageContext.setPageModel(pageModel);
+        return pageModel;
     }
 }

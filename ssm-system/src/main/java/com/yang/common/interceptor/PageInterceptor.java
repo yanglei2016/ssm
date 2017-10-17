@@ -19,7 +19,9 @@ import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.yang.common.page.PageContext;
 import com.yang.common.page.PageModel;
+import com.yang.common.tools.json.GsonUtils;
 
 /**
  * 分页拦截器
@@ -32,11 +34,16 @@ public class PageInterceptor implements Interceptor {
 	
 	@Override
 	public Object intercept(Invocation invocation) throws Exception{
+		PageModel pageModelThreadLocal = PageContext.getPageModel();
+		logger.info("-----------------------------------");
+		logger.info("pageModelThreadLocal：{}", GsonUtils.toJson(pageModelThreadLocal));
 		try{
 			StatementHandler statementHandler = (StatementHandler)invocation.getTarget();
 			BoundSql boundSql = statementHandler.getBoundSql();
 			
 	        PageModel pageModel = this.getPageModel(boundSql);
+	        logger.info("pageModel：{}", GsonUtils.toJson(pageModel));
+	        logger.info("-----------------------------------");
 	        if(pageModel == null){
 	        	return invocation.proceed();
 	        }
@@ -60,6 +67,8 @@ public class PageInterceptor implements Interceptor {
 		}catch(Exception e){
 			logger.error("分页拦截器异常", e);
 			throw new RuntimeException("分页拦截器异常："+ e.getMessage());
+		}finally{
+			PageContext.remove();
 		}
 		return invocation.proceed();
 	}
