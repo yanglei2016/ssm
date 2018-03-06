@@ -22,13 +22,13 @@ public class MailSendTest extends BaseTest {
 
 	@Test
 	public void sendSingleTest() {
-		mailUtil.send("yangl016@ldygo.com", "测试主题", "测试内容");
+		mailUtil.send("", "测试主题", "测试内容");
 	}
 
 	@Test
 	public void sendMassTest() {
 		// List<String> recipients=new ArrayList<String>();
-		// recipients.add("yangl016@ldygo.com");
+		// recipients.add("");
 		List<String> recipients = mailUtil.getRecipients();
 		mailUtil.send(recipients, "测试附件", "测试附件发送");
 	}
